@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid alert alert-danger">
+      <div class="row">
+        <div class="col-sm">
+            <div id="root"></div>
+            <div id="list"></div>
+            <div id="sum"></div>
+            <div id="image"></div>
+        </div>
+        <div class="col-sm">
+            <div id="dock"></div>
+            <div id="app"></div>
+            <div id="image2"></div>
+            <div id="people"></div>
+        </div>
+      </div>
+    </div>
+    <script type="text/babel">
+      const peoples = ['santo', 'santosh', 'sanp'];
+
+      const peopleList = peoples.map(person =>
+      <li className="test">{person}</li>
+    );
+
+    ReactDOM.render(
+      peopleList,
+      document.getElementById('people')
+    );
+      ReactDOM.render(
+        <h1>Hello, world!</h1>,
+        document.getElementById('root')
+      );
+
+      const myList = (
+        <ul>
+          <li>First list</li>
+          <li>Second List</li>
+          <li>Third List</li>
+        </ul>
+      );
+
+      ReactDOM.render(
+        myList,
+        document.getElementById('list')
+      );
+
+      ReactDOM.render(
+        <h1>{5+6}</h1>,
+        document.getElementById('sum')
+      );
+      const imgsize = '100px';
+      const santosh = 'http://santosh.com.au/wp-content/uploads/2017/04/santosh-image.png'
+        const sanp = (<img src={santosh} height={imgsize} />);
+        ReactDOM.render(
+          sanp,
+          document.getElementById('image')
+        );
+
+      const goose = 'https://s3.amazonaws.com/codecademy-content/courses/React/react_photo-goose.jpg';
+      
+
+      const gooseImg = (<img src={goose} height={imgsize} width={imgsize}/>);
+      ReactDOM.render(
+        gooseImg,
+        document.getElementById('dock')
+      );
+
+function makeDoggy(e) {
+  // Call this extremely useful function on an <img>.
+  // The <img> will become a picture of a doggy.
+  e.target.setAttribute('src', 'https://s3.amazonaws.com/codecademy-content/courses/React/react_photo-puppy.jpeg');
+  e.target.setAttribute('alt', 'doggy');
+}
+
+const kitty = (
+	<img 
+    onClick={makeDoggy}
+    height = {imgsize}
+		src="https://s3.amazonaws.com/codecademy-content/courses/React/react_photo-kitty.jpg" 
+		alt="kitty" />
+);
+
+ReactDOM.render(
+  kitty, 
+  document.getElementById('app')
+);
+
+function coinToss() {
+  return Math.random() < 0.5 ? 'heads' : 'tails';
+}
+
+const pics = {
+  kitty1: 'https://s3.amazonaws.com/codecademy-content/courses/React/react_photo-kitty.jpg',
+  doggy1: 'https://s3.amazonaws.com/codecademy-content/courses/React/react_photo-puppy.jpeg'
+};
+
+const imgs = <img height = {imgsize} src = {pics[coinToss() === 'heads' ? 'kitty1' : 'doggy1']} />;
+ReactDOM.render(
+  imgs,
+  document.getElementById('image2')
+);
+    </script>
+    <!--
+      Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      To set up a production-ready React build environment, follow these instructions:
+      * https://reactjs.org/docs/add-react-to-a-new-app.html
+      * https://reactjs.org/docs/add-react-to-an-existing-app.html
+
+      You can also use React without JSX, in which case you can remove Babel:
+      * https://reactjs.org/docs/react-without-jsx.html
+      * https://reactjs.org/docs/cdn-links.html
+    -->
+  </body>
+</html>
